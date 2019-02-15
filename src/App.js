@@ -8,22 +8,24 @@ import {
 } from 'react-router-dom'
 import Home from './Home';
 import NewListing from './NewListing';
+import Login from './Login';
 import {Navbar, Nav} from 'react-bootstrap'; 
-import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Home}/>
           <Route exact path="/newlisting" component={NewListing} />
           <Navbar bg="dark" variant="dark" fixed="bottom">
             <Nav className="mr-auto">
-              <LinkContainer to="/">
+              <IndexLinkContainer to="/home" onClick={doSomething}>
                 <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/newlisting">
+              </IndexLinkContainer>
+              <LinkContainer to="/newlisting" onClick={doSomething}>
                 <Nav.Link>newlisting</Nav.Link>
               </LinkContainer>
             </Nav>
@@ -32,6 +34,10 @@ class App extends Component {
       </Router>
     );
   }
+}
+
+function doSomething(){
+  console.log("poop")
 }
 
 export default App;
